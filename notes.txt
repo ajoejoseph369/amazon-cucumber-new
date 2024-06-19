@@ -1,3 +1,6 @@
 +919778310928
 
 
+npm install @wdio/cli
+npm install --save-dev @wdio/cli
+npm install ts-node@latest typescript@latest

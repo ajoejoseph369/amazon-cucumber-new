@@ -12,8 +12,7 @@ Feature: Test amazon website functionality
     Then user is redirected to homepage
 
     Examples:
-      | username | password |
-      |          |          |
+      | username      | password  |
 
   Scenario: Check if user is able to search for a product
     Given user is on the hompage

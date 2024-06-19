@@ -1,6 +1,6 @@
 const {$} = require('@wdio/globals');
 
-const product = "//span[@class='a-size-medium a-color-base a-text-normal'][normalize-space()='Apple iPhone 15 Pro (256 GB) - Blue Titanium']";
+const product = '//span[contains(text(), "iPhone 15 Pro (256 GB) - Blue Titanium")]';
 
 class ResultsPage{
     async checkSearchRedirection(){
@@ -11,8 +11,20 @@ class ResultsPage{
     }
 
     async selectProduct(){
-        await $(product).waitForExist({timeout:5000})
-        await $(product).click();
+        await $(product).waitForExist({timeout:5000});
+        const prod = await $$(product);
+        let count = 1;
+        for(const pd of prod){
+            count = count + 1;
+            await pd.waitForClickable({ timeout: 5000 });
+            if(count==2){
+                if(await pd.isClickable()){
+                    await pd.click();
+                    console.log("Element clicked");
+                    break;
+                }
+            }
+        }
     }
 
 }
